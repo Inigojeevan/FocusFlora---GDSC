@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   html,body {
-    background-color: #062a1a;
+    background-color: ${(props) => props.theme.colors.bg};
     font-size: 62.5%;
   }
   body {
@@ -20,9 +20,21 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
+const theme = {
+  colors: {
+    primary: 'darkolivegreen',
+    secondary: '#0d2118',
+    bg: '#062a1a',
+  },
+  }
+
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+    
   </React.StrictMode>,
 )

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-
+import Tags from "../components/Tags"
 const App = () => {
   return (
    <>
       <Title>Focus<span className="green">Flora</span></Title>
-
+      <Tags />
    </> 
   )
 }
