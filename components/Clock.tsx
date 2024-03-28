@@ -1,9 +1,36 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+
+
 const Clock = () => {
+    const [time, setTime] = useState(500);
+    const [isActive, setIsActive] = useState(false)
+
+    useEffect(() => {
+        if(isActive && time > 0) {
+            const interval = setInterval(() => {
+                setTime((time) => time -1);
+            }, 1000);
+    
+            return () => clearInterval(interval);
+        }
+    }, [time, isActive])
+
+    const activateTimer = () => {
+        setIsActive(!isActive); //true
+    }
+
+    const getTime = (time: number) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+
+        return `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+    }
+
   return (
     <ClockContainer>
-      <TimerText>05:00</TimerText>
-      <StartPauseButton></StartPauseButton>
+      <TimerText>{getTime(time)}</TimerText>
+      <StartPauseButton onClick={activateTimer}>{isActive ? "Pause" : "Start"}</StartPauseButton>
     </ClockContainer>
   );
 };
@@ -16,8 +43,7 @@ const ClockContainer = styled.div`
 `;
 const TimerText = styled.h3`
   font-size: 8rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  
 `;
 
 const StartPauseButton = styled.button`
