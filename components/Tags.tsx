@@ -37,6 +37,7 @@ const NavBar = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
 
 const Tag = styled.button<TagProps>`
