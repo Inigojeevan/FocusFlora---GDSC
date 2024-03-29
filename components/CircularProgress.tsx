@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Clock from "./Clock";
 import { StateContext } from "./StateProvider";
 
@@ -8,7 +8,12 @@ interface OuterCircleProps {
 }
 
 const CircularProgress = () => {
-  const {progress, setProgress} = useContext(StateContext);
+  const {progress, setProgress, time, initTime} = useContext(StateContext);
+  
+  useEffect(() => {
+    setProgress(time / (initTime / 100));
+  }, [setProgress, time]);
+
 
   return (
     <OuterCircle progress={progress}>

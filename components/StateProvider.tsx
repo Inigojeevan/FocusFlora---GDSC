@@ -4,14 +4,14 @@ import { createContext, useEffect, useState } from "react";
 export const StateContext = createContext<any>(null);
 const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [workTime, setWorkTime] = useState(25 * 60);
-  const [shortBreakTime, setShortBreakTime] = useState(5);
+  const [shortBreakTime, setShortBreakTime] = useState(5 * 60);
   const [longBreakTime, setLongBreakTime] = useState(30 * 60);
 
   const [initTime, setInitTime] = useState(0);
 
   const [activeTag, setActiveTag] = useState(0);
-  const [progress, setProgress] = useState(55);
-  const [time, setTime] = useState(0);
+  const [progress, setProgress] = useState(20);
+  const [time, setTime] = useState(0);  
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
