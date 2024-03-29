@@ -11,7 +11,7 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [activeTag, setActiveTag] = useState(0);
   const [progress, setProgress] = useState(20);
-  const [time, setTime] = useState(0);  
+  const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -44,9 +44,14 @@ const StateProvider = ({ children }: { children: React.ReactNode }) => {
         setTime,
         isActive,
         setIsActive,
-        initTime, setInitTime,
-        shortBreakTime, setShortBreakTime,
-        longBreakTime, setLongBreakTime,
+        initTime,
+        setInitTime,
+        workTime,
+        setWorkTime,
+        shortBreakTime,
+        setShortBreakTime,
+        longBreakTime,
+        setLongBreakTime,
       }}
     >
       {children}
