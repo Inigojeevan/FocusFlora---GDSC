@@ -50,15 +50,17 @@ const ClockContainer = styled.div`
 `;
 const TimerText = styled.h3`
   font-size: 8rem;
-  
+  color: white;
 `;
 
 const StartPauseButton = styled.button`
   all: unset;
   text-align: center;
-  font-size: 6rem;
+  font-size: 4rem;
+  padding-top: 1rem;
   text-transform: uppercase;
   letter-spacing: 1rem;
+  color: cyan;
 `;
 
 const ResetButton = styled(StartPauseButton)`
