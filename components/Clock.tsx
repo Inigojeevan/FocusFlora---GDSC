@@ -32,18 +32,25 @@ const Clock = () => {
     };
 
     const SessionHandler = () => {
-        const elapsedTime = initTime - time; // Calculate elapsed time
-        const completedSessions = parseInt(localStorage.getItem("CompletedSessions") || "0", 10); // Retrieve completed sessions from localStorage or default to 0
-        localStorage.setItem("time", JSON.stringify(initTime)); // Store initial time
-        localStorage.setItem("CompletedSessions", String(completedSessions + 1)); // Increment completed sessions count
-        localStorage.setItem("ElapsedTime", String(elapsedTime)); // Store elapsed time for the current session
-        setCompletedSessions(completedSessions + 1); // Update completed sessions state
+        const elapsedTime = initTime - time; 
+        const completedSessions = parseInt(localStorage.getItem("CompletedSessions") || "0", 10); 
+        localStorage.setItem("time", JSON.stringify(initTime)); 
+        localStorage.setItem("CompletedSessions", String(completedSessions + 1)); 
+        localStorage.setItem("ElapsedTime", String(elapsedTime)); 
+        setCompletedSessions(completedSessions + 1); 
     };
+
+    useEffect(() => {
+        if (time === 0 && isActive) {
+            setIsActive(false);
+            SessionHandler();
+        }
+        console.log(time, isActive);
+    }, [time])
 
     const resetTime = () => {
         setTime(initTime);
         setIsActive(false);
-        SessionHandler();
     };
 
     const getTime = (time: number) => {
