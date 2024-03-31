@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { StateContext } from "./StateProvider";
 
 const Clock = () => {
@@ -10,6 +10,13 @@ const Clock = () => {
     return parseInt(localStorage.getItem("UncompletedSessions") || "0", 10);
   });
   const [showModal, setShowModal] = useState<boolean>(false);
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const savedTime = JSON.parse(localStorage.getItem("time") || "0");
@@ -57,6 +64,12 @@ const Clock = () => {
       SessionHandler();
     }
   }, [time, isActive]);
+
+  useEffect(() => {
+    if(time === 0 && isActive) {
+      alert("Session Completed");
+    }
+  }, [time])
 
   const resetTime = () => {
     if (isActive && time !== 0) {
