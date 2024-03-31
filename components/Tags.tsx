@@ -4,20 +4,25 @@ import { StateContext } from "./StateProvider";
 
 interface TagProps {
   activeTag: boolean;
+  disabled?: boolean; // Add disabled prop
 }
 
 const Tags = () => {
-  const {activeTag, setActiveTag} = useContext(StateContext);
+  const { activeTag, setActiveTag, isActive } = useContext(StateContext); // Retrieve isActive state
 
   const handleTagClick = (index: number) => {
-    setActiveTag(index);
+    if (!isActive) { // Allow tag switching only if the timer is not active
+      setActiveTag(index);
+    }
   };
+
   return (
     <NavBar>
       {["Work", "Short Break", "Long Break"].map((tag, i) => (
         <Tag
           onClick={() => handleTagClick(i)}
-          activeTag={activeTag == i}
+          activeTag={activeTag === i}
+          disabled={isActive} // Pass disabled prop based on isActive
           key={i}
         >
           {tag}
@@ -49,10 +54,11 @@ const Tag = styled.button<TagProps>`
   flex: 1;
   font-size: 2rem;
   background: black;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")}; // Set cursor based on disabled state
 
   ${({ activeTag }) =>
     activeTag &&
     css`
-      background: darkgreen;};
+      background: darkgreen;
     `}
 `;

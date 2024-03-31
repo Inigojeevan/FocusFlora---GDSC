@@ -36,8 +36,9 @@ const Clock = () => {
     <ClockContainer>
       <TimerText>{getTime(time)}</TimerText>
       <StartPauseButton onClick={activateTimer}>{isActive ? "Pause" : "Start"}</StartPauseButton>
-      {time == 0 && <ResetButton onClick={resetTime}>Reset</ResetButton>}
+       <ResetButton onClick={resetTime}>Reset</ResetButton>
     </ClockContainer>
+    
   );
 };
 
