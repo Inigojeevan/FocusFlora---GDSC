@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext } from "react";
 import { StateContext } from "./StateProvider";
 
 const Clock = () => {
@@ -10,13 +10,9 @@ const Clock = () => {
     return parseInt(localStorage.getItem("UncompletedSessions") || "0", 10);
   });
   const [showModal, setShowModal] = useState<boolean>(false);
-  const isMounted = useRef(true);
 
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
+
+
 
   useEffect(() => {
     const savedTime = JSON.parse(localStorage.getItem("time") || "0");
@@ -66,10 +62,10 @@ const Clock = () => {
   }, [time, isActive]);
 
   useEffect(() => {
-    if(time === 0 && isActive) {
+    if (time === 0 && isActive) {
       alert("Session Completed");
     }
-  }, [time])
+  }, [time]);
 
   const resetTime = () => {
     if (isActive && time !== 0) {
@@ -102,7 +98,7 @@ const Clock = () => {
     setUncompletedSessions(0);
     localStorage.setItem("CompletedSessions", "0");
     localStorage.setItem("UncompletedSessions", "0");
-  }
+  };
 
   return (
     <ClockContainer>
@@ -111,9 +107,7 @@ const Clock = () => {
         {isActive ? "Pause" : "Start"}
       </StartPauseButton>
       <ResetButton onClick={resetTime}>Reset</ResetButton>
-      <SessionInfo onClick={openModal}>
-       View Sessions
-      </SessionInfo>
+      <SessionInfo onClick={openModal}>View Sessions</SessionInfo>
       {showModal && (
         <Modal>
           <ModalContent>
@@ -123,7 +117,9 @@ const Clock = () => {
               Uncompleted Sessions: {uncompletedSessions}
             </ModalText>
             <CloseButton onClick={closeModal}>Close</CloseButton>
-            <ClearSessionButton onClick={clearSessions}>Clear Session</ClearSessionButton>
+            <ClearSessionButton onClick={clearSessions}>
+              Clear Session
+            </ClearSessionButton>
           </ModalContent>
         </Modal>
       )}

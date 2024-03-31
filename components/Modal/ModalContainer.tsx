@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FaWindowClose } from "react-icons/fa";
@@ -6,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import { useContext } from "react";
 import { StateContext } from "../StateProvider";
 
-const ModalContainer = ({ isOpen, onClose }: any) => {
+const ModalContainer = ({ onClose }: any) => {
   const {
     workTime,
     setWorkTime,
