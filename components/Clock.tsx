@@ -5,6 +5,9 @@ import { StateContext } from "./StateProvider";
 const Clock = () => {
     const { time, setTime, isActive, setIsActive, initTime } = useContext(StateContext);
     const [completedSessions, setCompletedSessions] = useState<number>(0);
+    const [uncompletedSessions, setUncompletedSessions] = useState(() => {
+      return parseInt(localStorage.getItem("UncompletedSessions") || "0", 10);
+  });
 
     useEffect(() => {
         const savedTime = JSON.parse(localStorage.getItem("time") || '0');
@@ -45,12 +48,16 @@ const Clock = () => {
             setIsActive(false);
             SessionHandler();
         }
-        console.log(time, isActive);
     }, [time])
 
     const resetTime = () => {
-        setTime(initTime);
-        setIsActive(false);
+      if(isActive && time !== 0) {
+        const uncompleted = uncompletedSessions + 1;
+        localStorage.setItem("UncompletedSessions", String(uncompleted));
+        setUncompletedSessions(uncompleted);
+    }
+    setTime(initTime);
+    setIsActive(false);
     };
 
     const getTime = (time: number) => {
@@ -65,6 +72,7 @@ const Clock = () => {
             <StartPauseButton onClick={activateTimer}>{isActive ? "Pause" : "Start"}</StartPauseButton>
             <ResetButton onClick={resetTime}>Reset</ResetButton>
             <SessionInfo>Completed Sessions: {completedSessions}</SessionInfo>
+            <SessionInfo>Uncompleted Sessions: {uncompletedSessions}</SessionInfo>
         </ClockContainer>
     );
 };
