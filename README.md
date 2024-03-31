@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# FocusFlora - Home Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/Inigojeevan/FocusFlora---GDSC/assets/114288468/25bf9d0f-1ba1-43c0-b9a6-d080a9d8f8fe)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# FocusFlora - Settings
 
-## Expanding the ESLint configuration
+![image](https://github.com/Inigojeevan/FocusFlora---GDSC/assets/114288468/0f746331-5ada-430d-bacd-a940f4ea424a)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+# FocusFlora - Sessions
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+![image](https://github.com/Inigojeevan/FocusFlora---GDSC/assets/114288468/ad4cf125-67c2-4032-b97d-11ad0bbb3cd9)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Tool Used
+
+* React
